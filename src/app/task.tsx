@@ -5,6 +5,14 @@ import { formatDistanceToNow } from "date-fns";
 import { Loader, Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export const MotionMYButton = motion(Button);
 
@@ -49,16 +57,29 @@ export default function Task(props: Props) {
                 className="text-gray-500 hover:text-red-500 transition-colors cursor-pointer">
                     {Loading ? <Loader className="animate-spin"/> : <Trash/>}
                 </MotionMYButton>
-                <MotionMYButton
-                whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.8 }} 
-                onClick={async() => {
-                    setLoading1(true) 
-                    await editTask({ taskId: props.task._id, text: prompt("Edit task title", props.task.title) || props.task.title })
-                    setLoading1(false)}}
-                className="text-gray-500 hover:text-white transition-colors cursor-pointer">
-                    {Loading1 ? <Loader className="animate-spin"/> : <Pencil/>}
-                </MotionMYButton>
+                <Dialog>
+                <DialogTrigger><MotionMYButton
+                    whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+                    whileTap={{ scale: 0.8 }} 
+                    onClick={async() => {
+                        // setLoading1(true) 
+                        // await editTask({ taskId: props.task._id, text: prompt("Edit task title", props.task.title) || props.task.title })
+                        // setLoading1(false)
+                    }}
+                    className="text-gray-500 hover:text-white transition-colors cursor-pointer">
+                        {Loading1 ? <Loader className="animate-spin"/> : <Pencil/>}
+                    </MotionMYButton></DialogTrigger>
+                    <DialogContent>
+                    <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
+                    <DialogDescription>
+                        This action cannot be undone. This will permanently delete your account
+                        and remove your data from our servers.
+                    </DialogDescription>
+                    </DialogHeader>
+                    </DialogContent>
+                    </Dialog>
+                
             </div> 
         </div>
     ) 
