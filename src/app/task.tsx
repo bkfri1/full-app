@@ -4,6 +4,9 @@ import { motion } from "motion/react";
 import { formatDistanceToNow } from "date-fns";
 import { Loader, Pencil, Trash } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+
+export const MotionMYButton = motion(Button);
 
 interface Props {
     task: (typeof api.server.getTasks._returnType)[number]
@@ -26,7 +29,7 @@ export default function Task(props: Props) {
                     className="mr-3"    
                     />
                 <div className="flex flex-col gap-2">
-                    <span className="text-2xl">{props.task.title}</span>
+                    <span className="text-2xl text-white">{props.task.title}</span>
                     <span className="text-gray-500 text-sm">
                     {formatDistanceToNow(new Date(props.task._creationTime), { addSuffix: true })}
                     
@@ -35,7 +38,8 @@ export default function Task(props: Props) {
                 <motion.button></motion.button>
             </div>
             <div className="flex flex-col gap-2">
-                <motion.button 
+                <MotionMYButton 
+                variant={"secondary"}
                 whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.8 }} 
                 onClick={async() => {
@@ -44,8 +48,8 @@ export default function Task(props: Props) {
                     setLoading(false)}}
                 className="text-gray-500 hover:text-red-500 transition-colors cursor-pointer">
                     {Loading ? <Loader className="animate-spin"/> : <Trash/>}
-                </motion.button>
-                <motion.button 
+                </MotionMYButton>
+                <MotionMYButton
                 whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.8 }} 
                 onClick={async() => {
@@ -54,7 +58,7 @@ export default function Task(props: Props) {
                     setLoading1(false)}}
                 className="text-gray-500 hover:text-white transition-colors cursor-pointer">
                     {Loading1 ? <Loader className="animate-spin"/> : <Pencil/>}
-                </motion.button>
+                </MotionMYButton>
             </div> 
         </div>
     ) 
