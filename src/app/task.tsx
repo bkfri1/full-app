@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import EditTask from "./edit-task";
 
 export const MotionMYButton = motion(Button);
 
@@ -24,8 +25,6 @@ export default function Task(props: Props) {
     const updateTask = useMutation(api.server.toggleTaskCompletion);
     const deleteTask = useMutation(api.server.deleteTask);
     const [Loading, setLoading] = useState(false);
-    const [Loading1, setLoading1] = useState(false);
-    const editTask = useMutation(api.server.editTask);
     return(
         <div className="bg-gray-900 p-5 rounded-md flex gap-10 justify-between items-center">
             <div className="flex items-center gap-3">
@@ -47,8 +46,7 @@ export default function Task(props: Props) {
             </div>
             <div className="flex flex-col gap-2">
                 <MotionMYButton 
-                variant={"secondary"}
-                whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+                whileHover={{ scale: 1.4, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.8 }} 
                 onClick={async() => {
                     setLoading(true) 
@@ -57,28 +55,7 @@ export default function Task(props: Props) {
                 className="text-gray-500 hover:text-red-500 transition-colors cursor-pointer">
                     {Loading ? <Loader className="animate-spin"/> : <Trash/>}
                 </MotionMYButton>
-                <Dialog>
-                <DialogTrigger><MotionMYButton
-                    whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
-                    whileTap={{ scale: 0.8 }} 
-                    onClick={async() => {
-                        // setLoading1(true) 
-                        // await editTask({ taskId: props.task._id, text: prompt("Edit task title", props.task.title) || props.task.title })
-                        // setLoading1(false)
-                    }}
-                    className="text-gray-500 hover:text-white transition-colors cursor-pointer">
-                        {Loading1 ? <Loader className="animate-spin"/> : <Pencil/>}
-                    </MotionMYButton></DialogTrigger>
-                    <DialogContent>
-                    <DialogHeader>
-                    <DialogTitle>Are you absolutely sure?</DialogTitle>
-                    <DialogDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
-                    </DialogDescription>
-                    </DialogHeader>
-                    </DialogContent>
-                    </Dialog>
+                <EditTask task={props.task}/>
                 
             </div> 
         </div>
