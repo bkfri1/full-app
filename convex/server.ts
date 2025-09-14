@@ -49,3 +49,27 @@ export const editTask = mutation({
     });
   },
 });
+
+export const registerUser = mutation({
+  args: { username: v.string(), password: v.string() },
+  handler: async (ctx, args) => {
+    const newUserId = await ctx.db.insert("users", { 
+        username: args.username,
+        password: args.password,
+    });
+    return newUserId;
+  },
+});
+
+export const login = mutation({
+  args: { username: v.string(), password: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+    .query('users')
+    .filter(q => q.eq(q.field('username'), args.username))
+    .first();
+    if (!user) throw new Error("User not found");
+    if (user.password !== args.password) throw new Error("Invalid password");
+    return user._id;
+  },
+});

@@ -18,7 +18,7 @@ export default function InputCard() {
         setText('')
     }
     return(
-        <div className="bg-gray-900 rounded-2xl w-fit mx-auto p-4 flex gap-2 mr-5">
+        <div className="bg-gray-900 rounded-2xl w-fit mx-auto p-4 flex gap-2 mr-5 text-white">
             <input
              type="text" 
              placeholder="Task title"

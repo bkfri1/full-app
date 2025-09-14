@@ -5,7 +5,9 @@ export default defineSchema({
     tasks: defineTable({
         title: v.string(),
         isCompleted: v.boolean(),
-    })
-
-    
+    }),
+    users: defineTable({
+        username: v.string(),
+        password: v.string(),
+    }),
 });
