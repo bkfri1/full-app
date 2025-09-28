@@ -10,4 +10,9 @@ export default defineSchema({
         username: v.string(),
         password: v.string(),
     }),
+    tokens: defineTable({
+        userId: v.id("users"),
+        token: v.string(),
+        loggedOut: v.boolean(),
+    }),
 });

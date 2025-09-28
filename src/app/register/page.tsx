@@ -3,7 +3,7 @@ import { useMutation } from "convex/react";
 import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "sonner"
 
 export default function Page() {
     const [username, setUsername] = useState("");
@@ -31,7 +31,6 @@ export default function Page() {
 
     return (
         <div className="h-screen flex items-center justify-center">
-            <Toaster position="top-center" />
             <div className="bg-gray-700 w-fit p-12 rounded-3xl text-white text-lg min-w-[400px]">
                 <h2 className="text-3xl mb-6 font-bold text-center">Register</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">

@@ -1,3 +1,4 @@
+import { randomBytes } from "crypto";
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
@@ -70,6 +71,14 @@ export const login = mutation({
     .first();
     if (!user) throw new Error("User not found");
     if (user.password !== args.password) throw new Error("Invalid password");
+    
+    const token = Math.random().toString(36).substring(2);
+
+    await ctx.db.insert("tokens", {
+        userId: user._id,
+        token: crypto.randomUUID(),
+        loggedOut: false,
+    });
     return user._id;
   },
 });
