@@ -1,24 +1,28 @@
-'use client'
+"use client";
 import { useMutation } from "convex/react";
-import { use, useState } from "react";
+import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function Page() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [message, setMessage] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            setMessage("Passwords do not match");
+            toast.error("Passwords do not match");
             return;
         }
-        // Here you would send data to your backend API
-        register({ username, password });
-        router.push("/login");
+        try {
+            await register({ username, password });
+            toast.success("Registered successfully!");
+            router.push("/login");
+        } catch (err: any) {
+            toast.error(err?.message || "Registration failed");
+        }
     };
     const register = useMutation(api.server.registerUser);
     const router = useRouter();
@@ -27,6 +31,7 @@ export default function Page() {
 
     return (
         <div className="h-screen flex items-center justify-center">
+            <Toaster position="top-center" />
             <div className="bg-gray-700 w-fit p-12 rounded-3xl text-white text-lg min-w-[400px]">
                 <h2 className="text-3xl mb-6 font-bold text-center">Register</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -65,7 +70,6 @@ export default function Page() {
                     </label>
                     <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded text-lg font-semibold w-full min-w-[350px]">Register</button>
                 </form>
-                {message && <div className="mt-6 text-green-400 text-lg">{message}</div>}
             </div>
         </div>
     );
