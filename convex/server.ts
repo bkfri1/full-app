@@ -10,7 +10,6 @@ export const createTask = mutation({
     const token = await ctx.db
       .query('tokens')
       .filter(q => q.eq(q.field('token'), args.token))
-      .filter(q => q.eq(q.field('loggedOut'), false))
       .first();
       if (!token) throw new Error("Invalid token");
     const newTaskId = await ctx.db.insert("tasks", { 
@@ -23,8 +22,14 @@ export const createTask = mutation({
 });
 
 export const getTasks = query({
-  handler: async ctx => {
-      return await ctx.db.query("tasks").collect();
+  args: { token: v.string() },
+  handler: async(ctx, args) => {
+    const token = await ctx.db
+      .query('tokens')
+      .filter(q => q.eq(q.field('token'), args.token))
+      .first();
+      if (!token) throw new Error("Invalid token");
+      return await ctx.db.query("tasks").filter(q => q.eq(q.field('userId'), token.userId)).collect();
   },
 });
 
@@ -84,7 +89,7 @@ export const login = mutation({
 
     await ctx.db.insert("tokens", {
         userId: user._id,
-        token: crypto.randomUUID(),
+        token: token,
         loggedOut: false,
     });
     return{ token: token}

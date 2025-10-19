@@ -1,10 +1,14 @@
 import { useQuery } from "convex/react"
 import { api } from "../../convex/_generated/api"
 import Task from "./task"
+import { useGetCookie } from "cookies-next"
 
 export default function Tasks() {
-    const tasks = useQuery(api.server.getTasks)
+    const getCookie = useGetCookie()
 
+    const token = getCookie('token')
+
+    const tasks = useQuery(api.server.getTasks, {token: token!})
     if (!tasks) return <div>Loading tasks...</div>
 
     return (

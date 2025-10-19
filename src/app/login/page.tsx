@@ -65,7 +65,3 @@ export default function Page() {
         </div>
     );
 }
-function setCookie(arg0: string, token: string) {
-    throw new Error("Function not implemented.");
-}
-
