@@ -4,11 +4,19 @@ import { v } from "convex/values";
 
 // Create a new task with the given text
 export const createTask = mutation({
-  args: { text: v.string() },
+  args: { text: v.string(), token: v.string() },
+
   handler: async (ctx, args) => {
+    const token = await ctx.db
+      .query('tokens')
+      .filter(q => q.eq(q.field('token'), args.token))
+      .filter(q => q.eq(q.field('loggedOut'), false))
+      .first();
+      if (!token) throw new Error("Invalid token");
     const newTaskId = await ctx.db.insert("tasks", { 
         title: args.text,
         isCompleted: false,
+        userId: token.userId,
     });
     return newTaskId;
   },
@@ -79,6 +87,6 @@ export const login = mutation({
         token: crypto.randomUUID(),
         loggedOut: false,
     });
-    return user._id;
+    return{ token: token}
   },
 });

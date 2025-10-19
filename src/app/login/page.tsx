@@ -4,15 +4,18 @@ import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner"
+import { useSetCookie } from 'cookies-next';
 
 export default function Page() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const setCookie = useSetCookie();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await login({ username, password });
+            const data = await login({ username, password });
+            setCookie('token', data.token);
             router.push("/");
         } catch (err: any) {
             if (err?.message?.toLowerCase().includes("password")) {
@@ -62,3 +65,7 @@ export default function Page() {
         </div>
     );
 }
+function setCookie(arg0: string, token: string) {
+    throw new Error("Function not implemented.");
+}
+

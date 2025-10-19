@@ -3,18 +3,23 @@ import { useState } from "react"
 import { api } from "../../convex/_generated/api"
 import { motion } from "motion/react"
 import { Loader, Plus } from "lucide-react"
+import { useGetCookie } from "cookies-next"
 
 
 export default function InputCard() {
     const [text, setText] = useState('')
 
     const addTask = useMutation(api.server.createTask)
+    const getCookies = useGetCookie()
 
     const [Loading, setLoading] = useState(false)
 
     async function sendTask() {
         if (text.trim() === '') return
-        await addTask({text})
+        setLoading(true)
+        const token = getCookies('token')
+        await addTask({text, token: token!})
+        setLoading(false)
         setText('')
     }
     return(
