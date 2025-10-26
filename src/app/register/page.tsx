@@ -3,6 +3,7 @@ import { useMutation } from "convex/react";
 import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { toast } from "sonner"
 
 export default function Page() {
@@ -68,6 +69,9 @@ export default function Page() {
                         />
                     </label>
                     <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded text-lg font-semibold w-full min-w-[350px]">Register</button>
+                    <div className="mt-4 text-center">
+                        <Link href="/login" className="text-sm text-blue-300 hover:underline">Already have an account? Login</Link>
+                    </div>
                 </form>
             </div>
         </div>

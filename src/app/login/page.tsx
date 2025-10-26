@@ -3,6 +3,7 @@ import { useMutation } from "convex/react";
 import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { toast } from "sonner"
 import { useSetCookie } from 'cookies-next';
 
@@ -61,6 +62,9 @@ export default function Page() {
                     </label>
                     <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded text-lg font-semibold w-full min-w-[350px]">Login</button>
                 </form>
+                <div className="mt-4 text-center">
+                    <Link href="/register" className="text-sm text-blue-300 hover:underline">Don't have an account? Register</Link>
+                </div>
             </div>
         </div>
     );

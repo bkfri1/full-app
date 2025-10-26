@@ -31,6 +31,7 @@ export default function InputCard() {
              onChange={e => setText(e.target.value)}
              className="bg-gray-800 rounded-md p-2"
              />
+            <input type="color" className="w-fit"/>
             <motion.button 
                 whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.8 }}
