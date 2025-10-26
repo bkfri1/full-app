@@ -8,6 +8,7 @@ import { useGetCookie } from "cookies-next"
 
 export default function InputCard() {
     const [text, setText] = useState('')
+    const [color, setColor] = useState('#101828')
 
     const addTask = useMutation(api.server.createTask)
     const getCookies = useGetCookie()
@@ -18,7 +19,7 @@ export default function InputCard() {
         if (text.trim() === '') return
         setLoading(true)
         const token = getCookies('token')
-        await addTask({text, token: token!})
+        await addTask({text, token: token!, color})
         setLoading(false)
         setText('')
     }
@@ -31,7 +32,12 @@ export default function InputCard() {
              onChange={e => setText(e.target.value)}
              className="bg-gray-800 rounded-md p-2"
              />
-            <input type="color" className="w-fit"/>
+            <input 
+            type="color" 
+            className="w-10 h-10"
+            value={color}
+            onChange={e => setColor(e.target.value)}
+            />
             <motion.button 
                 whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.8 }}

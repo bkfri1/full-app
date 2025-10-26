@@ -6,6 +6,7 @@ export default defineSchema({
         title: v.string(),
         isCompleted: v.boolean(),
         userId: v.id("users"),
+        color: v.string(),
     }),
     users: defineTable({
         username: v.string(),

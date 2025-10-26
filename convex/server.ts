@@ -4,7 +4,7 @@ import { v } from "convex/values";
 
 // Create a new task with the given text
 export const createTask = mutation({
-  args: { text: v.string(), token: v.string() },
+  args: { text: v.string(), token: v.string(), color: v.string() },
 
   handler: async (ctx, args) => {
     const token = await ctx.db
@@ -16,6 +16,7 @@ export const createTask = mutation({
         title: args.text,
         isCompleted: false,
         userId: token.userId,
+        color: args.color,
     });
     return newTaskId;
   },
