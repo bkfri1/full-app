@@ -1,6 +1,6 @@
 import { randomBytes } from "crypto";
 import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 
 // Create a new task with the given text
 export const createTask = mutation({
@@ -94,5 +94,17 @@ export const login = mutation({
         loggedOut: false,
     });
     return{ token: token}
+  },
+});
+
+export const logout = mutation({
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const token = await ctx.db
+      .query('tokens')
+      .filter(q => q.eq(q.field('token'), args.token))
+      .first();
+      if (!token) throw new ConvexError("Invalid token");
+      await ctx.db.patch(token._id, { loggedOut: true });
   },
 });
