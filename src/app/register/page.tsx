@@ -42,7 +42,7 @@ export default function Page() {
                             value={username}
                             placeholder="Enter username"
                             onChange={e => setUsername(e.target.value)}
-                            className="p-2 rounded text-gray-300 mt-1 border-2 border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
+                            className="p-2 rounded text-gray-300 mt-1 border-2 border-gray-600 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
                             required
                         />
                     </label>
@@ -53,7 +53,7 @@ export default function Page() {
                             value={password}
                             placeholder="Enter password"
                             onChange={e => setPassword(e.target.value)}
-                            className="p-2 rounded text-gray-300 mt-1 border-2 border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
+                            className="p-2 rounded text-gray-300 mt-1 border-2 border-gray-600 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
                             required
                         />
                     </label>
@@ -64,7 +64,7 @@ export default function Page() {
                             value={confirmPassword}
                             placeholder="Confirm password"
                             onChange={e => setConfirmPassword(e.target.value)}
-                            className="p-2 rounded text-gray-300 mt-1 border-2 border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
+                            className="p-2 rounded text-gray-300 mt-1 border-2 border-gray-600 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
                             required
                         />
                     </label>
