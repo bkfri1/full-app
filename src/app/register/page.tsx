@@ -36,35 +36,35 @@ export default function Page() {
                 <h2 className="text-3xl mb-6 font-bold text-center">Register</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <label className="flex flex-col text-lg">
-                        <span className="mb-1">Username:</span>
+                        <span className="mb-1 text-gray-900 dark:text-white">Username:</span>
                         <input
                             type="text"
                             value={username}
                             placeholder="Enter username"
                             onChange={e => setUsername(e.target.value)}
-                            className="p-2 rounded text-gray-900 mt-1 border-2 border-gray-500 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
+                            className="p-2 rounded text-gray-500 mt-1 border-2 border-gray-500 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
                             required
                         />
                     </label>
                     <label className="flex flex-col text-lg">
-                        <span className="mb-1">Password:</span>
+                        <span className="mb-1 text-gray-900 dark:text-white">Password:</span>
                         <input
                             type="password"
                             value={password}
                             placeholder="Enter password"
                             onChange={e => setPassword(e.target.value)}
-                            className="p-2 rounded text-gray-900 mt-1 border-2 border-gray-500 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
+                            className="p-2 rounded text-gray-500 mt-1 border-2 border-gray-500 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
                             required
                         />
                     </label>
                     <label className="flex flex-col text-lg">
-                        <span className="mb-1">Confirm Password:</span>
+                        <span className="mb-1 text-gray-900 dark:text-white">Confirm Password:</span>
                         <input
                             type="password"
                             value={confirmPassword}
                             placeholder="Confirm password"
                             onChange={e => setConfirmPassword(e.target.value)}
-                            className="p-2 rounded text-gray-900 mt-1 border-2 border-gray-500 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
+                            className="p-2 rounded text-gray-500 mt-1 border-2 border-gray-500 dark:border-gray-400 focus:border-blue-500 text-lg w-full min-w-[350px]"
                             required
                         />
                     </label>
