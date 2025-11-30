@@ -24,13 +24,13 @@ export default function InputCard() {
         setText('')
     }
     return(
-        <div className="bg-gray-900 rounded-2xl w-fit mx-auto p-4 flex gap-2 mr-5 text-white">
+        <div className="bg-gray-500 dark:bg-gray-900 rounded-2xl w-fit mx-auto p-4 flex gap-2 mr-5 text-white">
             <input
              type="text" 
              placeholder="Task title"
              value={text}
              onChange={e => setText(e.target.value)}
-             className="bg-gray-800 rounded-md p-2"
+             className="bg-gray-400 dark:bg-gray-800 rounded-md p-2 placeholder:text-black placeholder:dark:text-gray-300"
              />
             <input 
             type="color" 

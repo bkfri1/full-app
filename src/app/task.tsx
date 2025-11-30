@@ -2,17 +2,9 @@ import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { motion } from "motion/react";
 import { formatDistanceToNow } from "date-fns";
-import { Loader, Pencil, Trash } from "lucide-react";
+import { Loader, Trash } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import EditTask from "./edit-task";
 
 export const MotionMYButton = motion(Button);
@@ -42,7 +34,6 @@ export default function Task(props: Props) {
                     
                     </span>
             </div>
-                <motion.button></motion.button>
             </div>
             <div className="flex flex-col gap-2">
                 <MotionMYButton 
@@ -52,7 +43,7 @@ export default function Task(props: Props) {
                     setLoading(true) 
                     await deleteTask({ taskId: props.task._id})
                     setLoading(false)}}
-                className="text-gray-500 hover:text-red-500 transition-colors cursor-pointer">
+                className="text-red-500 bg-white dark:bg-gray-600 hover:bg-gray-200 hover:dark:bg-gray-400 transition-colors cursor-pointer">
                     {Loading ? <Loader className="animate-spin"/> : <Trash/>}
                 </MotionMYButton>
                 <EditTask task={props.task}/>

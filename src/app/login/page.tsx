@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner"
 import { useSetCookie } from 'cookies-next';
+import { ConvexError } from "convex/values";
 
 export default function Page() {
     const [username, setUsername] = useState("");
@@ -18,10 +19,10 @@ export default function Page() {
             const data = await login({ username, password });
             setCookie('token', data.token);
             router.push("/");
-        } catch (err: any) {
-            if (err?.message?.toLowerCase().includes("password")) {
+        } catch (err) {
+            if (err instanceof ConvexError && err.message.toLowerCase().includes("password")) {
                 toast.error("Wrong password");
-            } else if(err?.message?.toLowerCase().includes("username")) {
+            } else if(err instanceof ConvexError && err.message.toLowerCase().includes("username")) {
                 toast.error("Wrong username");
             } else {
                 toast.error("Login failed");
@@ -63,7 +64,7 @@ export default function Page() {
                     <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded text-lg font-semibold w-full min-w-[350px]">Login</button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link href="/register" className="text-sm text-blue-300 hover:underline">Don't have an account? Register</Link>
+                    <Link href="/register" className="text-sm text-blue-300 hover:underline">Don`t have an account? Register</Link>
                 </div>
             </div>
         </div>

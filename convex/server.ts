@@ -29,7 +29,7 @@ export const getTasks = query({
       .query('tokens')
       .filter(q => q.eq(q.field('token'), args.token))
       .first();
-      if (!token) throw new Error("Invalid token");
+      if (!token) return[];
       return await ctx.db.query("tasks").filter(q => q.eq(q.field('userId'), token.userId)).collect();
   },
 });

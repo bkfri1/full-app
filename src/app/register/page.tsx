@@ -21,8 +21,8 @@ export default function Page() {
             await register({ username, password });
             toast.success("Registered successfully!");
             router.push("/login");
-        } catch (err: any) {
-            toast.error(err?.message || "Registration failed");
+        } catch (err) {
+            toast.error(err instanceof Error ? err.message : "Registration failed");
         }
     };
     const register = useMutation(api.server.registerUser);

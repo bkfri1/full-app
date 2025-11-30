@@ -2,10 +2,9 @@ import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { MotionMYButton } from "./task";
 import { Loader, Pencil } from "lucide-react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Id } from "../../convex/_generated/dataModel";
 
 
 
@@ -16,11 +15,11 @@ export default function EditTask(props: Props) {
     const edit = useMutation(api.server.editTask);
     const [editText, setEditText] = useState(props.task.title);
     const [editing, setEditing] = useState(false);
-    const [Loading1, setLoading1] = useState(false);
+    const [Loading1,] = useState(false);
 
     return(
         <Dialog open={editing} onOpenChange={setEditing}>
-                <DialogTrigger><MotionMYButton
+                <DialogTrigger asChild><MotionMYButton
                     whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.8 }} 
                     onClick={async() => {
@@ -28,7 +27,7 @@ export default function EditTask(props: Props) {
                         // await editTask({ taskId: props.task._id, text: prompt("Edit task title", props.task.title) || props.task.title })
                         // setLoading1(false)
                     }}
-                    className="text-gray-500 hover:text-white transition-colors cursor-pointer">
+                    className="text-gray-500 bg-white dark:bg-gray-600 hover:bg-gray-200 hover:dark:bg-gray-400 hover:text-black dark:text-white transition-colors cursor-pointer">
                         {Loading1 ? <Loader className="animate-spin"/> : <Pencil/>}
                     </MotionMYButton></DialogTrigger>
                     <DialogContent>
