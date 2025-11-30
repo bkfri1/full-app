@@ -32,7 +32,7 @@ export default function Page() {
 
     return (
         <div className="h-screen flex items-center justify-center">
-            <div className="bg-gray-700 w-fit p-12 rounded-3xl text-white text-lg min-w-[400px]">
+            <div className="bg-gray-400 dark:bg-gray-700 w-fit p-12 rounded-3xl text-white text-lg min-w-[400px]">
                 <h2 className="text-3xl mb-6 font-bold text-center">Register</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <label className="flex flex-col text-lg">
