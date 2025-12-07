@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { ModalProvider } from "react-modal-hook";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
+import Plasma from "@/components/backgrounds";
 
 
 const geistSans = Geist({
@@ -38,8 +39,17 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange>
             {children}
-
             <div className="fixed left-3 top-3"><ModeToggle></ModeToggle></div>
+            <div className="fixed inset-0 -z-10">
+            <Plasma 
+              color="#ffffff"
+              speed={0.6}
+              direction="forward"
+              scale={1.1}
+              opacity={0.8}
+              mouseInteractive={true}
+              />
+            </div>
           </ThemeProvider>
         </ConvexClientProvider>
         </ModalProvider>
