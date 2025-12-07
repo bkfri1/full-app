@@ -18,7 +18,7 @@ export default function Task(props: Props) {
     const deleteTask = useMutation(api.server.deleteTask);
     const [Loading, setLoading] = useState(false);
     return(
-        <div style={{backgroundColor: props.task.color,}} className="bg-gray-900 p-5 rounded-md flex gap-10 justify-between items-center">
+        <div style={{backgroundColor: props.task.color + '90',}} className="bg-gray-900 p-5 rounded-md flex gap-10 justify-between items-center">
             <div className="flex items-center gap-3">
                 <motion.input 
                     whileTap={{ scale: 0.8 }}

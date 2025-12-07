@@ -64,7 +64,7 @@ export default function Page() {
   }
 
   return (
-    <div className="bg-gray-400 dark:bg-gray-800 w-fit mx-auto p-10 my-10 rounded-2xl relative">
+    <div className="bg-gray-400/50 dark:bg-gray-800/50 w-fit mx-auto p-10 my-10 rounded-2xl relative">
       <Button 
       title="Log out"
       variant={"secondary"} 

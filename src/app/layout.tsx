@@ -47,7 +47,7 @@ export default function RootLayout({
               direction="forward"
               scale={1.1}
               opacity={0.8}
-              mouseInteractive={true}
+              mouseInteractive={false}
               />
             </div>
           </ThemeProvider>
