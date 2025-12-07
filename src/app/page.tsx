@@ -12,6 +12,7 @@ import { api } from "../../convex/_generated/api";
 import { useModal } from "react-modal-hook";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import SplitText from "@/components/split-text";
 
 export default function Page() {
   const hasCookie = useHasCookie()
@@ -64,7 +65,7 @@ export default function Page() {
   }
 
   return (
-    <div className="bg-gray-400/50 dark:bg-gray-800/50 w-fit mx-auto p-10 my-10 rounded-2xl relative">
+    <div className="bg-gray-400/50 dark:bg-gray-800 w-fit mx-auto p-10 my-10 rounded-2xl relative">
       <Button 
       title="Log out"
       variant={"secondary"} 
@@ -76,7 +77,19 @@ export default function Page() {
       >
       <LogOut/>
       </Button>
-      <h1 className="text-center text-black dark:text-white  text-3xl p-5">Task Manager</h1>
+      <SplitText
+        text="Task Manager"
+        className="text-2xl font-semibold mb-5 text-center"
+        delay={100}
+        duration={0.6}
+        ease="power3.out"
+        splitType="chars"
+        from={{ opacity: 0, y: 40 }}
+        to={{ opacity: 1, y: 0 }}
+        threshold={0.1}
+        rootMargin="-100px"
+        textAlign="center"
+      />        
       <InputCard />
       <Tasks />
     </div>
